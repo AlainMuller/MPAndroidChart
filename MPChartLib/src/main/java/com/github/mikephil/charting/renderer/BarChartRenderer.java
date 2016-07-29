@@ -171,13 +171,20 @@ public class BarChartRenderer extends BarLineScatterCandleBubbleRenderer {
 
                 if (mChart.isDrawBarShadowEnabled()) {
                     if (mRadius > 0) {
-                        c.drawRoundRect(new RectF(buffer.buffer[j], mViewPortHandler.contentTop(),
-                                buffer.buffer[j + 2],
-                                mViewPortHandler.contentBottom()), mRadius, mRadius, mRenderPaint);
+                        c.drawRoundRect(new RectF(buffer.buffer[j], buffer.buffer[j + 1], buffer.buffer[j + 2],
+                                buffer.buffer[j + 3]), mRadius, mRadius, mRenderPaint);
                     } else {
                         c.drawRect(buffer.buffer[j], buffer.buffer[j + 1], buffer.buffer[j + 2],
                                 buffer.buffer[j + 3], mRenderPaint);
                     }
+                }
+
+                if (mRadius > 0) {
+                    c.drawRoundRect(new RectF(buffer.buffer[j], buffer.buffer[j + 1], buffer.buffer[j + 2],
+                            buffer.buffer[j + 3]), mRadius, mRadius, mRenderPaint);
+                } else {
+                    c.drawRect(buffer.buffer[j], buffer.buffer[j + 1], buffer.buffer[j + 2],
+                            buffer.buffer[j + 3], mRenderPaint);
                 }
 
                 if (drawBorder) {

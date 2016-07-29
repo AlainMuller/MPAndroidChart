@@ -249,4 +249,8 @@ public class BarChart extends BarLineChartBase<BarData> implements BarDataProvid
             notifyDataSetChanged();
         }
     }
+
+    public void setRadius(int radius) {
+        ((BarChartRenderer) mRenderer).setRadius(radius);
+    }
 }

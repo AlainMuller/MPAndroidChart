@@ -1,9 +1,6 @@
-
 package com.xxmassdeveloper.mpchartexample;
 
 import android.annotation.SuppressLint;
-import android.graphics.PointF;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,8 +43,10 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
         OnChartValueSelectedListener {
 
     protected BarChart mChart;
+    protected RectF mOnValueSelectedRectF = new RectF();
     private SeekBar mSeekBarX, mSeekBarY;
     private TextView tvX, tvY;
+    private boolean mIsRadiusEnabled = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +156,11 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
                 }
                 break;
             }
+            case R.id.radius: {
+                mChart.setRadius(mIsRadiusEnabled ? 0 : 25);
+                mIsRadiusEnabled = !mIsRadiusEnabled;
+                mChart.invalidate();
+            }
             case R.id.actionTogglePinch: {
                 if (mChart.isPinchZoomEnabled())
                     mChart.setPinchZoom(false);
@@ -210,7 +214,7 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
         tvX.setText("" + (mSeekBarX.getProgress() + 2));
         tvY.setText("" + (mSeekBarY.getProgress()));
 
-        setData(mSeekBarX.getProgress() + 1 , mSeekBarY.getProgress());
+        setData(mSeekBarX.getProgress() + 1, mSeekBarY.getProgress());
         mChart.invalidate();
     }
 
@@ -250,6 +254,7 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
         } else {
             set1 = new BarDataSet(yVals1, "The year 2017");
             set1.setColors(ColorTemplate.MATERIAL_COLORS);
+//            set1.setColor(ColorTemplate.MATERIAL_COLORS[0]);
 
             ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
             dataSets.add(set1);
@@ -262,8 +267,6 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
             mChart.setData(data);
         }
     }
-
-    protected RectF mOnValueSelectedRectF = new RectF();
 
     @SuppressLint("NewApi")
     @Override
@@ -287,5 +290,6 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
     }
 
     @Override
-    public void onNothingSelected() { }
+    public void onNothingSelected() {
+    }
 }

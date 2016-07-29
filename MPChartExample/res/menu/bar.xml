@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/actionToggleValues"
@@ -8,6 +8,10 @@
     <item
         android:id="@+id/actionToggleHighlight"
         android:title="Toggle Highlight">
+    </item>
+    <item
+        android:id="@+id/radius"
+        android:title="Set radius">
     </item>
     <item
         android:id="@+id/animateX"
